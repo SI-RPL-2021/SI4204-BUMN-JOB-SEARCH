@@ -89,9 +89,16 @@
 
                     @endif
 
+                    <!-- #req11 meloloskan user plemar-->
                     <a href="{{ route('loker.acc',$posisi->id)}}">
 
                         <button type="button" class="btn btn-primary my-button m-1">Accept</button>
+
+                    </a>
+
+                    <a href="{{ route('loker.dcc',$posisi->id_requestposisi)}}">
+
+                        <button type="button" class="btn btn-danger my-button m-1">Decline</button>
 
                     </a>
 
