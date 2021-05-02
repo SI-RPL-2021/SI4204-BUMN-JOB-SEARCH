@@ -95,11 +95,6 @@
 
                     </a>
 
-                    <a href="{{ route('loker.dcc',$posisi->id_requestposisi)}}">
-
-                        <button type="button" class="btn btn-danger my-button m-1">Decline</button>
-
-                    </a>
                     @endif
                 </td>
             </tr>
