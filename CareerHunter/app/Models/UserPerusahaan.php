@@ -1,4 +1,5 @@
 <?php
+// #req6 model userperusahaan
 
 namespace App\Models;
 
@@ -11,7 +12,7 @@ class UserPerusahaan extends Model
 
     public static function getCurrentUser($id)
     {
-        return UserPerusahaan::where("id",$id)->get()[0] ?? null;
+        return UserPerusahaan::where("id", $id)->get()[0] ?? null;
     }
 
     protected $table = "perusahaan_users";
