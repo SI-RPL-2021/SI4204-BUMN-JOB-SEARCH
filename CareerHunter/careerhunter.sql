@@ -1,35 +1,55 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.4.18-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             10.2.0.5599
--- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3307
+-- Generation Time: May 02, 2021 at 05:51 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
--- Dumping structure for table careerhuntersql.admins
-CREATE TABLE IF NOT EXISTS `admins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Database: `careerhuntersql`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table careerhuntersql.admins: ~0 rows (approximately)
-/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+--
+-- Dumping data for table `admins`
+--
+
 INSERT INTO `admins` (`id`, `username`, `password`, `updated_at`, `created_at`) VALUES
-	(1, 'admin', 'admin', NULL, NULL);
-/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
+(1, 'admin', 'admin', NULL, NULL);
 
--- Dumping structure for table careerhuntersql.lokers
-CREATE TABLE IF NOT EXISTS `lokers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lokers`
+--
+
+CREATE TABLE `lokers` (
+  `id` int(11) NOT NULL,
   `perusahaan_id` int(11) NOT NULL DEFAULT 0,
   `posisi` varchar(255) NOT NULL DEFAULT '0',
   `job_desc` text NOT NULL DEFAULT '0',
@@ -41,18 +61,27 @@ CREATE TABLE IF NOT EXISTS `lokers` (
   `gaji_max` int(11) DEFAULT NULL,
   `kualifikasi` text NOT NULL,
   `pengalaman_min` int(11) NOT NULL DEFAULT 0,
+  `status_loker` varchar(255) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table careerhuntersql.lokers: ~0 rows (approximately)
-/*!40000 ALTER TABLE `lokers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `lokers` ENABLE KEYS */;
+--
+-- Dumping data for table `lokers`
+--
 
--- Dumping structure for table careerhuntersql.perusahaan_users
-CREATE TABLE IF NOT EXISTS `perusahaan_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `lokers` (`id`, `perusahaan_id`, `posisi`, `job_desc`, `persyaratan`, `jenis_pekerjaan`, `usia_min`, `usia_max`, `gaji_min`, `gaji_max`, `kualifikasi`, `pengalaman_min`, `status_loker`, `updated_at`, `created_at`) VALUES
+(1, 1, 'developer', 'deskripsi developer', 'ipk minimal 3.0', 'fulltime', 18, 28, NULL, NULL, 'kualifikasi', 0, 'avail', '2021-04-23 19:12:47', '2021-04-23 10:37:39'),
+(2, 2, 'sistem analis', 'melakukan analisa sistem', 'minimal ipk 3.0', 'fulltime', 18, 25, 1000000, 9000000, 'kualifikasi sistem analis', 2, 'avail', '2021-04-30 06:58:39', '2021-04-30 06:58:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `perusahaan_users`
+--
+
+CREATE TABLE `perusahaan_users` (
+  `id` int(11) NOT NULL,
   `nama_pj` varchar(255) DEFAULT NULL,
   `foto_profil` varchar(255) DEFAULT NULL,
   `no_hp_pj` varchar(255) DEFAULT NULL,
@@ -69,29 +98,48 @@ CREATE TABLE IF NOT EXISTS `perusahaan_users` (
   `deskripsi` text DEFAULT 'belum',
   `tujuan` text DEFAULT 'belum',
   `updated_at` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table careerhuntersql.perusahaan_users: ~0 rows (approximately)
-/*!40000 ALTER TABLE `perusahaan_users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `perusahaan_users` ENABLE KEYS */;
+--
+-- Dumping data for table `perusahaan_users`
+--
 
--- Dumping structure for table careerhuntersql.request_posisi
-CREATE TABLE IF NOT EXISTS `request_posisi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `perusahaan_users` (`id`, `nama_pj`, `foto_profil`, `no_hp_pj`, `nama_perusahaan`, `email_perusahaan`, `no_perusahaan`, `username`, `password`, `kota`, `alamat`, `foto_akta`, `status_verifikasi`, `website`, `deskripsi`, `tujuan`, `updated_at`, `created_at`) VALUES
+(1, 'userPerusahaan', '19075_money.png', '087874097687', 'user.perusahaan@gmail.com', 'user.perusahaan@gmail.com', '088888888888', 'userperusahaan', 'password', 'Bandung', 'Bandung', '890399ktm.jpg', 'sudah', NULL, 'belum', 'belum', '2021-04-23 14:18:37', '2021-04-23 10:31:59'),
+(2, 'userPerusahaan', '353100_NECIS.png', '087874097687', 'Mo&Ko', 'moandko@gmail.com', '088888888888', 'moandko.official', 'password', 'Bandung', 'Bandung', '10112WhatsApp Image 2021-04-22 at 13.10.13.jpeg', 'sudah', NULL, 'belum', 'belum', '2021-04-30 06:59:20', '2021-04-29 11:53:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request_posisi`
+--
+
+CREATE TABLE `request_posisi` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT 0,
   `loker_id` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
+  `status_request` varchar(255) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table careerhuntersql.request_posisi: ~0 rows (approximately)
-/*!40000 ALTER TABLE `request_posisi` DISABLE KEYS */;
-/*!40000 ALTER TABLE `request_posisi` ENABLE KEYS */;
+--
+-- Dumping data for table `request_posisi`
+--
 
--- Dumping structure for table careerhuntersql.users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `request_posisi` (`id`, `user_id`, `loker_id`, `status_request`, `updated_at`, `created_at`) VALUES
+(1, 1, 1, 'avail', '2021-04-24 14:21:37', NULL),
+(2, 2, 1, 'avail', '2021-04-24 14:27:11', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `nama_lengkap` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `no_hp` varchar(255) NOT NULL,
@@ -107,14 +155,86 @@ CREATE TABLE IF NOT EXISTS `users` (
   `website` varchar(255) DEFAULT NULL,
   `portfolio` varchar(255) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table careerhuntersql.users: ~0 rows (approximately)
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+--
+-- Dumping data for table `users`
+--
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+INSERT INTO `users` (`id`, `nama_lengkap`, `email`, `no_hp`, `password`, `kelamin`, `tanggal_lahir`, `foto_ktp`, `foto_profil`, `education`, `tentang`, `experience`, `cv`, `website`, `portfolio`, `updated_at`, `created_at`) VALUES
+(1, 'moandko', 'moandko.official@gmail.com', '087874097687', 'password', 'pria', '1995-02-08', '32168ktm.jpg', NULL, '', '', '', '312060_US_Digital_Civility_Year_5.pdf', 'moandko.com', NULL, '2021-04-30 07:01:55', '2021-04-23 10:30:29'),
+(2, 'inzagi', 'inzagi@gmail.com', '087874097687', 'password', 'pria', '1997-02-24', '65999IMG_20210405_0001.jpg', NULL, '', '', '', NULL, NULL, NULL, '2021-04-24 14:04:16', '2021-04-24 14:04:16');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lokers`
+--
+ALTER TABLE `lokers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `perusahaan_users`
+--
+ALTER TABLE `perusahaan_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `request_posisi`
+--
+ALTER TABLE `request_posisi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `lokers`
+--
+ALTER TABLE `lokers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `perusahaan_users`
+--
+ALTER TABLE `perusahaan_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `request_posisi`
+--
+ALTER TABLE `request_posisi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
