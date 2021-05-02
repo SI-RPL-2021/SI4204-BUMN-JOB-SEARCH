@@ -1,5 +1,7 @@
 <?php
 
+// #req7 model admin
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +13,7 @@ class Admin extends Model
 
     public static function getCurrentUser($id)
     {
-        return Admin::where("id",$id)->get()[0] ?? null;
+        return Admin::where("id", $id)->get()[0] ?? null;
     }
 
     protected $fillable = [

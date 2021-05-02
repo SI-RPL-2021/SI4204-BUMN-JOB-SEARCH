@@ -1,3 +1,4 @@
+<!-- #req7 melakukan veriv perusahaan -->
 @extends("layout.body.body")
 
 @section("title", "Verifikasi User Perusahaan")
@@ -36,7 +37,7 @@
                 <td>{{$d->no_perusahaan}}</td>
                 <td>
                     <a href="{{route("admin.terima.perusahaan",["id"=>$d->id])}}" class="btn btn-success">Terima</a>
-                    <a href="{{route("admin.tolak.perusahaan",["id"=>$d->id])}}"class="btn btn-danger">Tolak</a>
+                    <a href="{{route("admin.tolak.perusahaan",["id"=>$d->id])}}" class="btn btn-danger">Tolak</a>
                 </td>
             </tr>
             @endforeach
@@ -44,4 +45,3 @@
     </table>
 </div>
 @endsection
-
