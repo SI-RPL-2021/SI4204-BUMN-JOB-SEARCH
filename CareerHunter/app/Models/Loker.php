@@ -1,4 +1,5 @@
 <?php
+// #req8 model loker
 
 namespace App\Models;
 
@@ -23,6 +24,7 @@ class Loker extends Model
         $loker->gaji_max = $r->post("gaji_max");
         $loker->kualifikasi = $r->post("kualifikasi");
         $loker->pengalaman_min = $r->post("pengalaman_min");
+        $loker->status_loker = "avail";
         $loker->save();
     }
     protected $fillable = [
@@ -36,5 +38,6 @@ class Loker extends Model
         "usia_max",
         "kualifikasi",
         "pengalaman_min",
+        "status_loker",
     ];
 }

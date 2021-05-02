@@ -1,3 +1,4 @@
+<!-- #req8 menambah loker -->
 @extends("layout.body.body")
 
 @section("title", "Verifikasi User Perusahaan")
@@ -14,9 +15,10 @@
         {{session("fail")}}
     </div>
     @endif
-    <p class="fw-bold">Tambah Lowongan Pekerjaan</p>
-    <form method="post" action="{{route("process.perusahaan.loker.tambah")}}">
+
+    <form method="post" action="{{route("process.perusahaan.loker.tambah")}}" style="background-color: rgba(75, 123, 245, 0.7); padding: 15px;">
         @csrf
+        <h3 class="fw-bold">Tambah Lowongan Pekerjaan</h3>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Posisi Pekerjaan</label>
             <input required name="posisi" type="text" class="form-control" id="exampleFormControlInput1">
@@ -45,15 +47,13 @@
             <label class="form-label">Jarak Usia</label>
             <div class="d-flex">
                 <select required name="usia_min" class="form-control">
-                    @for ($i=18;$i<60;$i++)
-                    <option value="{{$i}}">{{$i}}</option>
-                    @endfor
+                    @for ($i=18;$i<60;$i++) <option value="{{$i}}">{{$i}}</option>
+                        @endfor
                 </select>
                 <p class="mt-3 mx-3">Sampai</p>
                 <select required name="usia_max" class="form-control">
-                    @for ($i=18;$i<60;$i++)
-                    <option value="{{$i}}">{{$i}}</option>
-                    @endfor
+                    @for ($i=18;$i<60;$i++) <option value="{{$i}}">{{$i}}</option>
+                        @endfor
                 </select>
             </div>
         </div>
@@ -76,4 +76,3 @@
     </form>
 </div>
 @endsection
-

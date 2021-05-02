@@ -12,7 +12,7 @@ class UserPerusahaanController extends Controller
 
     /*
     |-----------------------------
-    |		#req6 login
+    |		#req6 login 		
     |-----------------------------
     */
     //digunakan untuk menampilkan form login
@@ -23,7 +23,7 @@ class UserPerusahaanController extends Controller
 
     /*
     |-----------------------------
-    |		#req6 register
+    |		#req6 register 		
     |-----------------------------
     */
     //digunakan untuk menampilkan form register
@@ -81,7 +81,7 @@ class UserPerusahaanController extends Controller
 
     /*
     |-----------------------------
-    |		#req6 proses register
+    |		#req6 proses register 		
     |-----------------------------
     */
     //digunakan untuk menyimpan form register ke db
@@ -133,5 +133,17 @@ class UserPerusahaanController extends Controller
         }
 
         return redirect()->route('auth.perusahaan.login')->with("fail", "Gagal masuk salah username atau password");
+    }
+
+    /*
+    |-----------------------------
+    |		#req8 proses post menambah loker 		
+    |-----------------------------
+    */
+    //digunakan untuk menyimpan loker ke db
+    public function postLowonganPekerjaan(Request $r)
+    {
+        Loker::tambah($r);
+        return redirect()->route("perusahaan.loker.tambah")->with("success", "Berhasil menambahkan lowongan kerja!");
     }
 }
