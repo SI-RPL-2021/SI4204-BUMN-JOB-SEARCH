@@ -125,6 +125,52 @@
                 Next Tahap {{$posisi->status_loker}}
             </button>
             @endif
+            <!-- req14 -->
+            <div class="modal fade" id="statusLokerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Info</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ route('loker.next')}}" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{ $posisi->id }}">
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Info</label>
+                                    <textarea class="form-control" name="info" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-date-input">Date</label>
+                                    <input class="form-control" name="tanggal" type="date" id="example-date-input">
+                                </div>
+                                @if($posisi->status_loker=="lolos tahap 3")
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="wawancara" id="exampleRadios1" value="online" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Wawancara Online
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="wawancara" id="exampleRadios2" value="offline">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Wawancara Offline
+                                    </label>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             @endforeach
         </tbody>
     </table>

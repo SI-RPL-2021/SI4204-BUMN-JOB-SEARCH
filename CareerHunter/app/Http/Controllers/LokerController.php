@@ -147,6 +147,18 @@ class LokerController extends Controller
                 $RequestPosisi->status_request = "ditolak";
                 $RequestPosisi->save();
             }
+        } else if ($loker->status_loker == "lolos tahap 3") {
+            //req14
+            $loker->status_loker = "lolos tahap 4";
+            $loker->info_tahap4 = $request->post("info");
+            $loker->tanggal_tahap4 = $request->post("tanggal");
+            $loker->wawancara = $request->post("wawancara");
+            $RequestPosisiDB = DB::table('request_posisi')->where('status_request', '<>', 'lolos tahap 4')->get();
+            foreach ($RequestPosisiDB as $posisi) {
+                $RequestPosisi = RequestPosisi::find($posisi->id);
+                $RequestPosisi->status_request = "ditolak";
+                $RequestPosisi->save();
+            }
         }
         $loker->save();
         return redirect()->route('home', ['up' => $loker, "sessionNow" => User::getCurrentUser(session("id"))]);
