@@ -12,7 +12,7 @@ class LokerController extends Controller
 {
     /*
     |-----------------------------
-    |		#req9 proses menampilkan loker 		
+    |		#req9 proses menampilkan loker
     |-----------------------------
     */
     public function lihatLoker($id)
@@ -26,7 +26,7 @@ class LokerController extends Controller
 
     /*
     |-----------------------------
-    |		#req9 proses menampilkan pelamar 		
+    |		#req9 proses menampilkan pelamar
     |-----------------------------
     */
     public function detailLoker($id)
@@ -46,7 +46,7 @@ class LokerController extends Controller
 
     /*
     |-----------------------------
-    |		#req10 proses memberikan konfirmasi lolos bagi pelamar 		
+    |		#req10 proses memberikan konfirmasi lolos bagi pelamar
     |-----------------------------
     */
     public function AccLoker($id)
@@ -63,7 +63,7 @@ class LokerController extends Controller
 
     /*
     |-----------------------------
-    |		#req10 proses memberikan konfirmasi tidak lolos bagi pelamar 		
+    |		#req10 proses memberikan konfirmasi tidak lolos bagi pelamar
     |-----------------------------
     */
     public function DccLoker($id)
@@ -88,6 +88,52 @@ class LokerController extends Controller
 
         $loker->save();
 
+        return redirect()->route('home', ['up' => $loker, "sessionNow" => User::getCurrentUser(session("id"))]);
+    }
+
+    /*
+    |-----------------------------
+    |		#req12
+    |-----------------------------
+    */
+
+    public function NextLoker(Request $request)
+
+    {
+
+        $loker = Loker::find($request->post("id"));
+        if ($loker->status_loker == "avail") {
+            $loker->status_loker = "lolos tahap 1";
+            $loker->info_tahap1 = $request->post("info");
+            $loker->tanggal_tahap1 = $request->post("tanggal");
+            $RequestPosisiDB = DB::table('request_posisi')->where('status_request', '<>', 'lolos tahap 1')->get();
+            foreach ($RequestPosisiDB as $posisi) {
+                $RequestPosisi = RequestPosisi::find($posisi->id);
+                $RequestPosisi->status_request = "ditolak";
+                $RequestPosisi->save();
+            }
+        } else if ($loker->status_loker == "lolos tahap 1") {
+            $loker->status_loker = "lolos tahap 2";
+            $loker->info_tahap2 = $request->post("info");
+            $loker->tanggal_tahap2 = $request->post("tanggal");
+            $RequestPosisiDB = DB::table('request_posisi')->where('status_request', '<>', 'lolos tahap 2')->get();
+            foreach ($RequestPosisiDB as $posisi) {
+                $RequestPosisi = RequestPosisi::find($posisi->id);
+                $RequestPosisi->status_request = "ditolak";
+                $RequestPosisi->save();
+            }
+        } else if ($loker->status_loker == "lolos tahap 2") {
+            $loker->status_loker = "lolos tahap 3";
+            $loker->info_tahap3 = $request->post("info");
+            $loker->tanggal_tahap3 = $request->post("tanggal");
+            $RequestPosisiDB = DB::table('request_posisi')->where('status_request', '<>', 'lolos tahap 3')->get();
+            foreach ($RequestPosisiDB as $posisi) {
+                $RequestPosisi = RequestPosisi::find($posisi->id);
+                $RequestPosisi->status_request = "ditolak";
+                $RequestPosisi->save();
+            }
+        }
+        $loker->save();
         return redirect()->route('home', ['up' => $loker, "sessionNow" => User::getCurrentUser(session("id"))]);
     }
 }

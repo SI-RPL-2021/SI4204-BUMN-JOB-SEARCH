@@ -33,6 +33,7 @@
                 <td>{{$loop->index+1}}</td>
                 <td>{{$posisi->nama_lengkap}}</td>
                 <td>{{$posisi->email}}</td>
+                <!-- #req11-->
                 <td>
                     @switch($posisi->status_request)
 
@@ -43,7 +44,27 @@
                     @break
                     @case("lolos tahap 1")
 
-                    <p class="text-success">Lolos tahap 1</p>
+                    <p class="text-success">Seleksi Pisikotes</p>
+
+                    @break
+                    @case("lolos tahap 2")
+
+                    <p class="text-success">Seleksi Tulis</p>
+
+                    @break
+                    @case("lolos tahap 3")
+
+                    <p class="text-success">Seleksi Skill</p>
+
+                    @break
+                    @case("lolos tahap 4")
+
+                    <p class="text-success">Seleksi Wawancara</p>
+
+                    @break
+                    @case("diterima")
+
+                    <p class="text-success">Pelamar diterima</p>
 
                     @break
                     @case("ditolak")
@@ -54,16 +75,10 @@
                     @endswitch
                 </td>
                 <td>
-                    <!-- <a href="{{ route('loker.detail',$posisi->id)}}">
-
-                        <button type="button" class="btn btn-primary my-button m-1">Detail</button>
-
-                    </a> -->
                     @if($posisi->status_request!="ditolak")
 
                     @if($posisi->cv != '')
 
-                    <!-- Trigger the modal with a button -->
                     <button type="button" class="btn btn-info  my-button m-1" data-toggle="modal" data-target="#myModal">CV</button>
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
@@ -88,23 +103,28 @@
                     </div>
 
                     @endif
-
-                    <!-- #req11 meloloskan user plemar-->
-                    <a href="{{ route('loker.acc',$posisi->id)}}">
+                    <!-- #req10 & req12 & req13-->
+                    @if($posisi->status_request==$posisi->status_loker && $posisi->status_request!="diterima")
+                    <a href="{{ route('loker.acc',$posisi->id_requestposisi)}}">
 
                         <button type="button" class="btn btn-primary my-button m-1">Accept</button>
 
                     </a>
+                    @endif
 
                     <a href="{{ route('loker.dcc',$posisi->id_requestposisi)}}">
 
                         <button type="button" class="btn btn-danger my-button m-1">Decline</button>
 
                     </a>
-
                     @endif
                 </td>
             </tr>
+            @if($posisi->status_loker!='diterima')
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#statusLokerModal">
+                Next Tahap {{$posisi->status_loker}}
+            </button>
+            @endif
             @endforeach
         </tbody>
     </table>
