@@ -37,6 +37,11 @@ class UserPerusahaanController extends Controller
         return view("userperusahaan.profil", ["sessionNow" => UserPerusahaan::getCurrentUser(session("id"))]);
     }
 
+    /*
+    |-----------------------------
+    |		#req18 		
+    |-----------------------------
+    */
     public function editProfile(Request $r)
     {
         // Ambil data user yang sekarang lagi login
@@ -115,6 +120,11 @@ class UserPerusahaanController extends Controller
         return redirect()->route("auth.perusahaan.login")->with("success", "Berhasil membuat akun perusahaan, silahkan login");
     }
 
+    /*
+    |-----------------------------
+    |		#req18		
+    |-----------------------------
+    */
     public function processLogin(Request $r)
     {
         $user = UserPerusahaan::where("username", $r->post("username"))->where("password", $r->post("password"))->get();
