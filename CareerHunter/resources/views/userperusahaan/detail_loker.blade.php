@@ -120,11 +120,6 @@
                     @endif
                 </td>
             </tr>
-            @if($posisi->status_loker!='diterima')
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#statusLokerModal">
-                Next Tahap {{$posisi->status_loker}}
-            </button>
-            @endif
             <!-- req14 -->
             <div class="modal fade" id="statusLokerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -174,5 +169,10 @@
             @endforeach
         </tbody>
     </table>
+    @if($posisi->status_loker!='diterima')
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#statusLokerModal">
+        Next Tahap {{$posisi->status_loker}}
+    </button>
+    @endif
 </div>
 @endsection
