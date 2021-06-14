@@ -37,44 +37,39 @@
                     <td>{{$d->posisi}}</td>
                     <td>{{$d->job_desc}}</td>
                     <td>
-                        @switch($d->status_request)
-
-                        @case("avail")
-
+                        @if($d->status_request == "avail")
                         <p class="text-warning">Proses Seleksi Administrasi</p>
+                        @endif
 
-                        @break
-                        @case("lolos tahap 1")
+                        @if($d->status_request == "lolos tahap 1")
 
                         <p class="text-success">Seleksi Psikotes</p>
+                        @endif
 
-                        @break
-                        @case("lolos tahap 2")
+                        @if($d->status_request == "lolos tahap 2")
 
                         <p class="text-success">Ujian Tulis</p>
-
-                        @break
-                        @case("lolos tahap 3")
+                        @endif
+                        @if($d->status_request == "lolos tahap 3")
 
                         <p class="text-success">Test Skill</p>
 
-                        @break
-                        @case("lolos tahap 4")
+                        @endif
+                        @if($d->status_request == "lolos tahap 4")
 
                         <p class="text-success">Wawancara</p>
 
-                        @break
-                        @case("diterima")
+                        @endif
+                        @if($d->status_request == "diterima")
 
                         <p class="text-success">Selamat anda diterima</p>
 
-                        @break
-                        @case("ditolak")
+                        @endif
+                        @if($d->status_request == "ditolak")
 
                         <p class="text-danger">Ditolak</p>
 
-                        @break
-                        @endswitch
+                        @endif
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailLoker">
@@ -91,36 +86,39 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        @switch($d->status_request)
 
-                                        @case("avail")
+                                        @if($d->status_request == "avail")
 
                                         <p>Proses Seleksi Administrasi</p>
 
-                                        @break
-                                        @case("lolos tahap 1")
+                                        @endif
+                                        @if($d->status_request == "lolos tahap 1")
 
                                         <p>{{$d->info_tahap1}}</p>
+                                        <p>{{$d->tanggall_tahap1}}</p>
 
-                                        @break
-                                        @case("lolos tahap 2")
+                                        @endif
+                                        @if($d->status_request == "lolos tahap 2")
 
                                         <p>{{$d->info_tahap2}}</p>
+                                        <p>{{$d->tanggall_tahap2}}</p>
 
-                                        @break
-                                        @case("lolos tahap 3")
+                                        @endif
+                                        @if($d->status_request == "lolos tahap 3")
 
                                         <p>{{$d->info_tahap3}}</p>
+                                        <p>{{$d->tanggall_tahap3}}</p>
 
-                                        @break
-                                        @case("lolos tahap 4")
+                                        @endif
+                                        @if($d->status_request == "lolos tahap 4")
 
                                         <p>{{$d->info_tahap4}}</p>
+                                        <p>{{$d->tanggall_tahap4}}</p>
 
                                         <p class="text-success">wawancara dilaksanakan secara {{$d->wawancara}}</p>
 
-                                        @break
-                                        @case("diterima")
+                                        @endif
+                                        @if($d->status_request == "diterima")
 
                                         <p class="text-success">Selamat anda diterima</p>
 

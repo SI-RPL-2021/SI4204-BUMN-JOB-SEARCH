@@ -78,7 +78,7 @@
                     @elseif (session('id') && session('role') == 'admin')
                     <div class="dropdown me-3">
                         <button class="btn btn-outline-primary text-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ $sessionNow->username }}
+                            profile
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item text-dark" href="{{route("logout")}}">Logout</a></li>
@@ -87,7 +87,7 @@
                     @elseif (session('id') && session('role') == 'userperusahaan')
                     <div class="dropdown me-3">
                         <button class="btn btn-outline-primary text-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ $sessionNow->nama_pj }}
+                            profile
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item text-dark" href="{{route("perusahaan.profil")}}">Edit Profil</a></li>

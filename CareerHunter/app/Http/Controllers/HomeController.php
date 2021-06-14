@@ -12,18 +12,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (session("role") == "admin")
-        {
-            return view("home",["sessionNow"=>Admin::getCurrentUser(session("id"))]);
-        }
-        elseif (session("role") == "userperusahaan")
-        {
-            $up = Loker::where("perusahaan_id",session("id"))->get();
-            return view("home",["up"=>$up,"sessionNow"=>UserPerusahaan::getCurrentUser(session("id"))]);
-        }
-        else
-        {
-            return view("home",["sessionNow"=>User::getCurrentUser(session("id"))]);
+        if (session("role") == "admin") {
+            return view("home", ["sessionNow" => Admin::getCurrentUser(session("id"))]);
+        } elseif (session("role") == "userperusahaan") {
+            $up = Loker::where("perusahaan_id", session("id"))->get();
+            return view("home", ["up" => $up, "sessionNow" => UserPerusahaan::getCurrentUser(session("id"))]);
+        } else {
+            return view("home", ["sessionNow" => User::getCurrentUser(session("id"))]);
         }
     }
 }

@@ -190,12 +190,15 @@ class UserController extends Controller
 
     public function listPengajuan()
     {
+        // $pengajuan = RequestPosisi::where("user_id", session("id"))->get();
         $pengajuan = DB::table('request_posisi')
             ->join('users', 'request_posisi.user_id', '=', 'users.id')
             ->join('lokers', 'request_posisi.loker_id', '=', 'lokers.id')
             ->select('request_posisi.*', 'users.*', 'lokers.*')
             ->where('users.id', session("id"))
-            ->get();=
+            ->get();
+        // var_dump($pengajuan);
+        // die();
         return view("user/list_pengajuan", ["pengajuan" => $pengajuan, "sessionNow" => User::getCurrentUser(session("id"))]);
     }
 }

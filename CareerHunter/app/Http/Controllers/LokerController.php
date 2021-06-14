@@ -21,6 +21,8 @@ class LokerController extends Controller
         if (session("id") == null) {
             return view("auth.login");
         }
+        // $loker = DB::select("select * from lokers right join perusahaan_users on lokers.perusahaan_id = perusahaan_users.id where lokers.id = ?", [$id])[0];
+        // $loker = DB::select("select * from lokers right join perusahaan_users on lokers.perusahaan_id = perusahaan_users.id where lokers.id = $id");
         $loker = DB::table('lokers')
             ->join('perusahaan_users', 'lokers.perusahaan_id', '=', 'perusahaan_users.id')
             ->select('perusahaan_users.*', 'lokers.*')

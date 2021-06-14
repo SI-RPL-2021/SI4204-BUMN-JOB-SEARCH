@@ -35,6 +35,32 @@
                     <p class="text-success">Available</p>
 
                     @break
+
+                    @case("lolos tahap 1")
+
+                    <p class="text-success">Seleksi Tahap 1</p>
+
+                    @break
+                    @case("lolos tahap 2")
+
+                    <p class="text-success">Seleksi Tahap 2</p>
+
+                    @break
+                    @case("lolos tahap 3")
+
+                    <p class="text-success">Seleksi Tahap 3</p>
+
+                    @break
+                    @case("lolos tahap 4")
+
+                    <p class="text-success">Seleksi Tahap 4</p>
+
+                    @break
+                    @case("diterima")
+
+                    <p class="text-success">Diterima</p>
+
+                    @break
                     @case("not avail")
 
                     <p class="text-danger">Not Available</p>
@@ -45,7 +71,7 @@
                 <td>
                     @switch($d->status_loker)
 
-                    @case("avail")
+                    @case("avail" || "lolos tahap 1")
 
                     <a href="{{ route('loker.detail',$d->id)}}">
 

@@ -14,7 +14,7 @@
         {{session("fail")}}
     </div>
     @endif
-    
+
     <div class="mx-5 p-5 bg-light shadow bg-gradient" style="border-top: 10px solid var(--bs-primary);">
         <h1 class="mb-3">{{$loker->nama_perusahaan}}</h1>
         <p>Jenis Pekerjaan : {{ucwords($loker->jenis_pekerjaan)}}</p>
@@ -28,11 +28,10 @@
         <p>Kualifikasi :</p>
         <div class="mb-3" style="white-space: pre-wrap">{{$loker->kualifikasi}}</div>
         @php
-            $idp = DB::select("select * from perusahaan_users where nama_perusahaan = ?",[$loker->nama_perusahaan])[0];
+        $idp = DB::select("select * from perusahaan_users where nama_perusahaan = ?",[$loker->nama_perusahaan])[0];
         @endphp
         <a href="{{route("perusahaan.lihat",["id"=>$idp->id])}}" class="btn btn-primary">Lihat Detail Perusahaan</a>
-        <a href="{{route("ajukanposisi",["user_id"=>session("id"),"loker_id"=>$loker->id])}}" class="btn btn-primary">Ajukan Posisi</a>
+        <a href="{{route("ajukanposisi",["user_id"=>session("id"),"loker_id"=>$loker->id,"status_request"=>"avail"])}}" class="btn btn-primary">Ajukan Posisi</a>
     </div>
 </div>
 @endsection
-
