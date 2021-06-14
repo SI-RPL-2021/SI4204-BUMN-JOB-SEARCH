@@ -95,25 +95,25 @@
                                         @if($d->status_request == "lolos tahap 1")
 
                                         <p>{{$d->info_tahap1}}</p>
-                                        <p>{{$d->tanggall_tahap1}}</p>
+                                        <p>{{$d->tanggal_tahap1}}</p>
 
                                         @endif
                                         @if($d->status_request == "lolos tahap 2")
 
                                         <p>{{$d->info_tahap2}}</p>
-                                        <p>{{$d->tanggall_tahap2}}</p>
+                                        <p>{{$d->tanggal_tahap2}}</p>
 
                                         @endif
                                         @if($d->status_request == "lolos tahap 3")
 
                                         <p>{{$d->info_tahap3}}</p>
-                                        <p>{{$d->tanggall_tahap3}}</p>
+                                        <p>{{$d->tanggal_tahap3}}</p>
 
                                         @endif
                                         @if($d->status_request == "lolos tahap 4")
 
                                         <p>{{$d->info_tahap4}}</p>
-                                        <p>{{$d->tanggall_tahap4}}</p>
+                                        <p>{{$d->tanggal_tahap4}}</p>
 
                                         <p class="text-success">wawancara dilaksanakan secara {{$d->wawancara}}</p>
 
