@@ -122,8 +122,7 @@
 
                                         <p class="text-success">Selamat anda diterima</p>
 
-                                        @break
-                                        @endswitch
+                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
