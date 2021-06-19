@@ -137,7 +137,7 @@
                     <h2 class="fw-bold"><span class="text-primary">Job</span></h2>
                     <div class="row">
                         @foreach ($jobpopuler as $d)
-                        <div class="col mt-4 d-flex justify-content-left">
+                        <div class="col-sm-6 mt-4 d-flex justify-content-left">
                             <div class="card shadow" style="width: 28rem;">
                                 <div class="row">
                                     <div class="col">
